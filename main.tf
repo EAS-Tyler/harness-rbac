@@ -20,3 +20,10 @@ data "harness_platform_project" "project" {
   name   = var.project_name
   org_id = data.harness_platform_organization.org.id
 }
+
+module "roles" {
+  source          = "./modules/roles"
+  name            = "terraform-harness-rbac"
+  organization_id = data.harness_platform_organization.org.id
+  project_id      = data.harness_platform_project.project.id
+}
