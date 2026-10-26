@@ -21,9 +21,17 @@ data "harness_platform_project" "project" {
   org_id = data.harness_platform_organization.org.id
 }
 
-module "roles" {
-  source          = "./modules/roles"
-  name            = "terraform-harness-role"
+# module "roles" {
+#   source          = "./modules/roles"
+#   name            = "terraform-harness-role"
+#   organization_id = data.harness_platform_organization.org.id
+#   project_id      = data.harness_platform_project.project.id
+# }
+
+module "user_groups" {
+  source          = "./modules/user_groups"
+  name            = "demo rbac group"
   organization_id = data.harness_platform_organization.org.id
   project_id      = data.harness_platform_project.project.id
+  user_email_addresses = ["billbobaggins2013@gmail.com", "tylerjoerichards00@gmail.com", "tyler@enterpriseautomation.co.uk"]
 }
